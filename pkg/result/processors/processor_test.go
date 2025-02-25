@@ -22,10 +22,12 @@ func newIssueFromIssueTestCase(c issueTestCase) result.Issue {
 	return result.Issue{
 		Text:       c.Text,
 		FromLinter: c.Linter,
+		Severity:   c.Severity,
 		Pos: token.Position{
 			Filename: c.Path,
 			Line:     c.Line,
 		},
+		RelativePath: c.Path,
 	}
 }
 

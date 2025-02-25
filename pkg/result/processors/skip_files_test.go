@@ -1,7 +1,6 @@
 package processors
 
 import (
-	"go/token"
 	"path/filepath"
 	"strings"
 	"testing"
@@ -13,11 +12,7 @@ import (
 )
 
 func newFileIssue(file string) result.Issue {
-	return result.Issue{
-		Pos: token.Position{
-			Filename: file,
-		},
-	}
+	return result.Issue{RelativePath: file}
 }
 
 func newTestSkipFiles(t *testing.T, patterns ...string) *SkipFiles {
@@ -49,6 +44,6 @@ func TestSkipFiles(t *testing.T) {
 
 func TestSkipFilesInvalidPattern(t *testing.T) {
 	p, err := NewSkipFiles([]string{"\\o"}, "")
-	assert.Error(t, err)
+	require.Error(t, err)
 	assert.Nil(t, p)
 }

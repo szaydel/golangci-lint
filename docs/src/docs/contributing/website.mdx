@@ -14,7 +14,7 @@ The website lives in `docs/` directory of [golangci-lint repository](https://git
 
 ## Theme
 
-Initially the site is based on [@rocketseat](https://rocketdocs.netlify.app/) theme.
+Initially the site is based on [@rocketseat](https://github.com/jpedroschmitz/rocketdocs) theme.
 Later we've merged its code into `src/@rocketseat` because we needed too much changes
 and [gatsby shadowing](https://www.gatsbyjs.org/docs/themes/shadowing/) doesn't allow shadowing `gatsby-node.js` or `gatsby-config.js`.
 
@@ -24,14 +24,14 @@ Left menu is configured in `src/config/sidebar.yml`.
 
 ## Articles
 
-Articles are located in `src/docs/` in `*.mdx` files. [MDX](https://mdxjs.com/getting-started/gatsby) is markdown
+Articles are located in `src/docs/` in `*.mdx` files. [MDX](https://mdxjs.com/getting-started/gatsby) is Markdown
 allowing to use `React` components.
 
 ## Templating
 
 We use templates like `{.SomeField}` inside our `mdx` files.
-There templates are expanded by running `make expand_website_templates` in the root of the repository.
-It runs script `scripts/expand_website_templates/main.go` that rewrites `mdx` files with replaced templates.
+There templates are expanded by running `make website_expand_templates` in the root of the repository.
+It runs script `scripts/website/expand_templates/` that rewrites `mdx` files with replaced templates.
 
 ## Hosting
 
@@ -41,10 +41,12 @@ GitHub deploys the website to production after merging anything to a `master` br
 
 ## Local Testing
 
+Install Node.js (v20 or newer).
+
 Run:
 
 ```sh
-npm install
+npm install --legacy-peer-deps
 npm run start
 ```
 
@@ -57,5 +59,5 @@ Also, there is no need to refresh a webpage: hot reload updates changed content 
 To do it run:
 
 ```sh
-go run ./scripts/expand_website_templates/main.go
+go run ./scripts/website/expand_templates/
 ```
